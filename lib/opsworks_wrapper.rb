@@ -21,7 +21,7 @@ class OpsworksWrapper
   def get_running_instances
     stacks.map do |stack|
       instances = opsworks.describe_instances(stack_id: stack.stack_id).instances
-      instances.map {|i| InstanceWrapper.new(i) }.select {|i| i.accessible_via_ssh? }
+      instances.map {|i| InstanceWrapper.new(stack, i) }.select {|i| i.accessible_via_ssh? }
     end.flatten!
   end
 end
