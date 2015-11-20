@@ -24,7 +24,7 @@ describe Pizzacone::SSHConfigParser do
       let(:host_name) { "nix" }
       it "returns host specific options only" do
         expect(subject).to eq(
-          "hostname" => "54.155.206.163",
+          "hostname" => "1.2.3.4",
           "user" => "yurivm"
         )
       end
