@@ -20,11 +20,16 @@ module Pizzacone
     attr_reader :instances, :config
 
     def read_config_file
-      @config = IO.read(original_file_name)
+      @config = begin
+        IO.read(original_file_name)
+      rescue Errno::ENOENT
+        ""
+      end
     end
 
     def update_pizzacone_settings
       new_settings = instances_settings
+      require "pry"; binding.pry
       pizzacone_section_found? ? config.gsub(shady_regexp, new_settings) : config.prepend(new_settings)
     end
 
