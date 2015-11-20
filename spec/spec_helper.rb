@@ -28,6 +28,7 @@ VCR.configure do |config|
   config.default_cassette_options = { record: :new_episodes, re_record_interval: 518_400 }
 end
 
+# use files from fixtures for tests
 Pizzacone.configure do |config|
   config.ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config", __FILE__)
   config.backup_ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config.bak", __FILE__)

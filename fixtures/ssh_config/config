@@ -1,0 +1,22 @@
+### A typical config.
+
+Host nix
+  HostName 1.2.3.4
+  User yurivm
+
+Host salami
+  HostName 54.155.206.162
+  User awesome1
+
+Host salami
+  HostName 54.155.206.164
+  User awesome2
+
+### SSH defaults
+
+Host *
+  VisualHostKey = yes
+  Compression = yes
+  CompressionLevel = 9
+  ServerAliveInterval 30
+  ServerAliveCountMax 9999
