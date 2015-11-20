@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe SSHConfigParser do
+describe Pizzacone::SSHConfigParser do
   describe ".global_options" do
     subject { described_class.global_options }
 

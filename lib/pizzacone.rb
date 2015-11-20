@@ -1,25 +1,20 @@
 Bundler.require
 Dotenv.load
 
-require "instance_wrapper"
-require "opsworks_wrapper"
-require "ssh_config_parser"
-require "ssh_config_writer"
+require "pizzacone/instance_wrapper"
+require "pizzacone/opsworks_wrapper"
+require "pizzacone/ssh_config_parser"
+require "pizzacone/ssh_config_writer"
 
-module Lessh
+module Pizzacone
   class Configuration
     DEFAULT_SSH_CONFIG_FILE_PATH = "~/.ssh/config"
-    DEFAULT_NEW_SSH_CONFIG_FILE_PATH = "~/.ssh/config.new"
     DEFAULT_BACKUP_SSH_CONFIG_FILE_PATH = "~/.ssh/config.bak"
 
-    attr_writer :ssh_config_file_path, :new_ssh_config_file_path, :backup_ssh_config_file_path
+    attr_writer :ssh_config_file_path, :backup_ssh_config_file_path, :hostname_block
 
     def ssh_config_file_path
       @ssh_config_file_path || DEFAULT_SSH_CONFIG_FILE_PATH
-    end
-
-    def new_ssh_config_file_path
-      @new_ssh_config_file_path || DEFAULT_NEW_SSH_CONFIG_FILE_PATH
     end
 
     def backup_ssh_config_file_path

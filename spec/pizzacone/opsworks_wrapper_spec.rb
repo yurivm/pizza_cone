@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe OpsworksWrapper do
+describe Pizzacone::OpsworksWrapper do
   use_vcr_cassette
 
   describe "#stacks" do
@@ -33,7 +33,7 @@ describe OpsworksWrapper do
 
     it "returns an array of InstanceWrappers" do
       subject.each do |host|
-        expect(host).to be_a(InstanceWrapper)
+        expect(host).to be_a(Pizzacone::InstanceWrapper)
       end
     end
 
@@ -46,7 +46,6 @@ describe OpsworksWrapper do
     it "returns SSH IP address for each host" do
       subject.each do |host|
         expect(host.ssh_ip).to_not be_nil
-        puts "#{host.hostname} : #{host.ssh_ip}"
       end
     end
 

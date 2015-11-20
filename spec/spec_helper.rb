@@ -20,12 +20,17 @@
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__), "lib")
 
 require "vcr"
-require "lessh"
+require "pizzacone"
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
   config.default_cassette_options = { :record => :new_episodes, :re_record_interval => 518_400 }
+end
+
+Pizzacone.configure do |config|
+  config.ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config", __FILE__)
+  config.backup_ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config.bak", __FILE__)
 end
 
 RSpec.configure do |config|
