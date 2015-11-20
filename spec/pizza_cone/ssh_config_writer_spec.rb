@@ -1,11 +1,11 @@
 require "spec_helper"
 require "fileutils"
 
-describe Pizzacone::SSHConfigWriter do
+describe PizzaCone::SSHConfigWriter do
   use_vcr_cassette
 
   def updated_config_section(config_str)
-    /#{Pizzacone::SSHConfigWriter::CONFIG_COMMENT_MARKER}(.*?)#{Pizzacone::SSHConfigWriter::CONFIG_COMMENT_MARKER}/m.match(config_str)
+    /#{PizzaCone::SSHConfigWriter::CONFIG_COMMENT_MARKER}(.*?)#{PizzaCone::SSHConfigWriter::CONFIG_COMMENT_MARKER}/m.match(config_str)
   end
 
   def host_section(config_str)
@@ -21,7 +21,7 @@ describe Pizzacone::SSHConfigWriter do
     let(:backup_file_path) { File.join(fixtures_path, "config.bak") }
     let(:ssh_file_path) { File.join(fixtures_path, "config") }
     let(:src_file_path) { File.join(fixtures_path, "config.src") }
-    let(:instances) { Pizzacone::OpsworksWrapper.new.instances }
+    let(:instances) { PizzaCone::OpsworksWrapper.new.instances }
     subject { described_class.new(instances).write }
 
     before do
@@ -40,6 +40,22 @@ describe Pizzacone::SSHConfigWriter do
       end
     end
 
+    context "if the ssh config file did not exist" do
+      let(:moved_config_file_path) { File.join(fixtures_path, "config.ghost") }
+
+      before do
+        FileUtils.mv(ssh_file_path, moved_config_file_path)
+      end
+
+      after do
+        FileUtils.mv(moved_config_file_path, ssh_file_path)
+      end
+
+      it "creates the config file" do
+        expect(File.exist?(ssh_file_path)).to be(true)
+      end
+    end
+
     context "updated ssh file" do
       it "prepends the host settings to the original config" do
         match = updated_config_section(read_ssh_config)
@@ -48,7 +64,7 @@ describe Pizzacone::SSHConfigWriter do
 
       it "puts a comment marker in the file" do
         subject
-        expect(IO.read(backup_file_path)).to include(Pizzacone::SSHConfigWriter::CONFIG_COMMENT_MARKER)
+        expect(IO.read(backup_file_path)).to include(PizzaCone::SSHConfigWriter::CONFIG_COMMENT_MARKER)
       end
 
       it "puts a host section and a username for a host" do

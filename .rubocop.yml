@@ -15,7 +15,7 @@ LineLength:
   Max: 120
   Exclude:
     - vulpea.gemspec
-    - spec/pizzacone/ssh_config_writer_spec.rb
+    - spec/pizza_cone/ssh_config_writer_spec.rb
 MultilineOperationIndentation:
   Enabled: false
 SpaceAroundOperators:

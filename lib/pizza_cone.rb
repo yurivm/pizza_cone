@@ -1,7 +1,7 @@
 Bundler.require
 Dotenv.load
 
-module Pizzacone
+module PizzaCone
   class Configuration
     DEFAULT_SSH_CONFIG_FILE_PATH = "~/.ssh/config"
     DEFAULT_BACKUP_SSH_CONFIG_FILE_PATH = "~/.ssh/config.bak"
@@ -36,7 +36,7 @@ module Pizzacone
   end
 end
 
-require "pizzacone/instance_wrapper"
-require "pizzacone/opsworks_wrapper"
-require "pizzacone/ssh_config_parser"
-require "pizzacone/ssh_config_writer"
+require "pizza_cone/instance_wrapper"
+require "pizza_cone/opsworks_wrapper"
+require "pizza_cone/ssh_config_parser"
+require "pizza_cone/ssh_config_writer"

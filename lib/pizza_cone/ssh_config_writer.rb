@@ -1,6 +1,6 @@
 require "fileutils"
 
-module Pizzacone
+module PizzaCone
   class SSHConfigWriter
     CONFIG_COMMENT_MARKER = "### added by pizzacone ###"
 
@@ -11,7 +11,7 @@ module Pizzacone
     def write
       backup_original_file
       read_config_file
-      update_pizzacone_settings
+      update_pizza_cone_settings
       write_config_file
     end
 
@@ -27,9 +27,8 @@ module Pizzacone
       end
     end
 
-    def update_pizzacone_settings
+    def update_pizza_cone_settings
       new_settings = instances_settings
-      require "pry"; binding.pry
       pizzacone_section_found? ? config.gsub(shady_regexp, new_settings) : config.prepend(new_settings)
     end
 
@@ -48,11 +47,11 @@ module Pizzacone
     end
 
     def original_file_name
-      File.expand_path(Pizzacone.configuration.ssh_config_file_path)
+      File.expand_path(PizzaCone.configuration.ssh_config_file_path)
     end
 
     def backup_file_name
-      File.expand_path(Pizzacone.configuration.backup_ssh_config_file_path)
+      File.expand_path(PizzaCone.configuration.backup_ssh_config_file_path)
     end
 
     def pizzacone_section_found?

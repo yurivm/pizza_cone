@@ -1,4 +1,4 @@
-module Pizzacone
+module PizzaCone
   class OpsworksWrapper
     def initialize
       @opsworks = Aws::OpsWorks::Client.new(region: "us-east-1")

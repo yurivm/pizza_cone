@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Pizzacone::OpsworksWrapper do
+describe PizzaCone::OpsworksWrapper do
   use_vcr_cassette
 
   describe "#stacks" do
@@ -33,7 +33,7 @@ describe Pizzacone::OpsworksWrapper do
 
     it "returns an array of InstanceWrappers" do
       subject.each do |host|
-        expect(host).to be_a(Pizzacone::InstanceWrapper)
+        expect(host).to be_a(PizzaCone::InstanceWrapper)
       end
     end
 

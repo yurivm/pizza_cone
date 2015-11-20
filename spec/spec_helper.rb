@@ -20,7 +20,7 @@
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__), "lib")
 
 require "vcr"
-require "pizzacone"
+require "pizza_cone"
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
@@ -29,7 +29,7 @@ VCR.configure do |config|
 end
 
 # use files from fixtures for tests
-Pizzacone.configure do |config|
+PizzaCone.configure do |config|
   config.ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config", __FILE__)
   config.backup_ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config.bak", __FILE__)
 end

@@ -1,4 +1,4 @@
-module Pizzacone
+module PizzaCone
   module SSHConfigParser
     def global_options
       @global_options ||= Net::SSH::Config.load(ssh_config_file_path, "*")
@@ -12,7 +12,7 @@ module Pizzacone
     end
 
     def ssh_config_file_path
-      Pizzacone.configuration.ssh_config_file_path
+      PizzaCone.configuration.ssh_config_file_path
     end
 
     module_function :global_options, :options_for_host, :ssh_config_file_path
