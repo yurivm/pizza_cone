@@ -16,6 +16,7 @@ GEM
     aws-sdk-resources (2.1.35)
       aws-sdk-core (= 2.1.35)
     byebug (8.0.0)
+    chronic (0.10.2)
     coderay (1.1.0)
     concord (0.1.5)
       adamantium (~> 0.2.0)
@@ -88,6 +89,8 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -104,6 +107,7 @@ DEPENDENCIES
   rubocop
   vcr
   webmock
+  whenever
 
 BUNDLED WITH
    1.10.6

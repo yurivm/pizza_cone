@@ -1,7 +1,10 @@
-require 'fileutils'
+require "fileutils"
+
 module Pizzacone
   class SSHConfigWriter
     CONFIG_COMMENT_MARKER = "### added by pizzacone ###"
+    ORIGINAL_FILE_NAME = File.expand_path(Pizzacone.configuration.ssh_config_file_path)
+    BACKUP_FILE_NAME = File.expand_path(Pizzacone.configuration.backup_ssh_config_file_path)
 
     def initialize(instances)
       @instances = instances
@@ -19,7 +22,7 @@ module Pizzacone
     attr_reader :instances, :config
 
     def read_config_file
-      @config = IO.read(original_file_name)
+      @config = IO.read(ORIGINAL_FILE_NAME)
     end
 
     def update_pizzacone_settings
@@ -33,20 +36,16 @@ module Pizzacone
 
     def instances_settings
       settings = "#{CONFIG_COMMENT_MARKER}\n"
-      instances.each {|i| settings << i.to_s }
+      instances.each { |instance| settings << instance.to_s }
       settings << "#{CONFIG_COMMENT_MARKER}\n"
     end
 
     def write_config_file
-      File.open(original_file_name, "w") {|f| f.write(config) }
+      File.open(ORIGINAL_FILE_NAME, "w") { |file| file.write(config) }
     end
 
     def backup_original_file
-      FileUtils.cp(original_file_name, backup_file_name)
-    end
-
-    def original_file_name
-      File.expand_path(Pizzacone.configuration.ssh_config_file_path)
+      FileUtils.cp(ORIGINAL_FILE_NAME, backup_file_name) if File.exist?(ORIGINAL_FILE_NAME)
     end
 
     def backup_file_name

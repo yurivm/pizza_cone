@@ -5,14 +5,14 @@ describe Pizzacone::SSHConfigParser do
     subject { described_class.global_options }
 
     it "returns correct global options" do
-      expect(subject).to eq({
+      expect(subject).to eq(
         "host" => "*",
         "visualhostkey" => true,
         "compression" => true,
         "compressionlevel" => 9,
         "serveraliveinterval" => 30,
         "serveralivecountmax" => 9999
-      })
+      )
     end
   end
 
@@ -23,10 +23,10 @@ describe Pizzacone::SSHConfigParser do
     context "when a host is present in the ssh config file" do
       let(:host_name) { "nix" }
       it "returns host specific options only" do
-        expect(subject).to eq({
+        expect(subject).to eq(
           "hostname" => "54.155.206.163",
           "user" => "yurivm"
-        })
+        )
       end
     end
 
@@ -40,10 +40,10 @@ describe Pizzacone::SSHConfigParser do
     context "when a host is present in the ssh config file more than once" do
       let(:host_name) { "salami" }
       it "returns the first match" do
-        expect(subject).to eq({
+        expect(subject).to eq(
           "hostname" => "54.155.206.162",
           "user" => "awesome1"
-          })
+        )
       end
     end
   end

@@ -4,12 +4,13 @@ gem "aws-sdk", "~> 2"
 gem "dotenv"
 gem "net-ssh"
 gem "parseconfig"
+gem "whenever", require: false
 
 # debugging, testing and stuff
 group :development, :test do
   gem "pry-byebug"
-  gem "rspec"
   gem "rake"
+  gem "rspec"
   gem "rubocop"
   gem "reek"
   gem "vcr"

@@ -25,7 +25,7 @@ describe Pizzacone::OpsworksWrapper do
 
   describe "#instances" do
     subject { described_class.new.instances }
-    let(:accessible_statuses) { ["online", "running_setup", "setup_failed"] }
+    let(:accessible_statuses) { %w(online running_setup setup_failed) }
 
     it "returns an array of instances" do
       expect(subject).to be_a(Array)

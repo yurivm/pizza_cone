@@ -1,7 +1,7 @@
 module Pizzacone
   class OpsworksWrapper
     def initialize
-      @opsworks = Aws::OpsWorks::Client.new(region: 'us-east-1')
+      @opsworks = Aws::OpsWorks::Client.new(region: "us-east-1")
     end
 
     def stacks
@@ -9,17 +9,17 @@ module Pizzacone
     end
 
     def instances
-      @instances ||= get_running_instances
+      @instances ||= fetch_running_instances
     end
 
     private
 
     attr_reader :opsworks
 
-    def get_running_instances
+    def fetch_running_instances
       stacks.map do |stack|
         instances = opsworks.describe_instances(stack_id: stack.stack_id).instances
-        instances.map {|i| InstanceWrapper.new(stack, i) }.select {|i| i.accessible_via_ssh? }
+        instances.map { |instance| InstanceWrapper.new(stack, instance) }.select(&:accessible_via_ssh?)
       end.flatten!
     end
   end

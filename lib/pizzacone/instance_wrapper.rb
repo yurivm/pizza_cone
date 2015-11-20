@@ -1,7 +1,8 @@
 require "delegate"
 module Pizzacone
   class InstanceWrapper < SimpleDelegator
-    ACCESSIBLE_STATUSES = ["online", "running_setup", "setup_failed"]
+    ACCESSIBLE_STATUSES = %w(online running_setup setup_failed)
+    USERNAME = ENV.fetch("AWS_SSH_USERNAME")
 
     def initialize(stack, instance)
       @stack = stack
@@ -20,7 +21,7 @@ module Pizzacone
       <<-STR
       Host #{hostname} #{stack.name}-#{hostname}
         Hostname #{ssh_ip}
-        User #{ENV.fetch("AWS_SSH_USERNAME")}
+        User #{USERNAME}
 
       STR
     end

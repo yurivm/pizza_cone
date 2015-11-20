@@ -1,11 +1,6 @@
 Bundler.require
 Dotenv.load
 
-require "pizzacone/instance_wrapper"
-require "pizzacone/opsworks_wrapper"
-require "pizzacone/ssh_config_parser"
-require "pizzacone/ssh_config_writer"
-
 module Pizzacone
   class Configuration
     DEFAULT_SSH_CONFIG_FILE_PATH = "~/.ssh/config"
@@ -40,3 +35,8 @@ module Pizzacone
     writer.write
   end
 end
+
+require "pizzacone/instance_wrapper"
+require "pizzacone/opsworks_wrapper"
+require "pizzacone/ssh_config_parser"
+require "pizzacone/ssh_config_writer"

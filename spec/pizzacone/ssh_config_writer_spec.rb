@@ -32,13 +32,12 @@ describe Pizzacone::SSHConfigWriter do
 
     context "backups" do
       it "backs up the original file" do
-        expect(File.exists?(backup_file_path)).to be(true)
+        expect(File.exist?(backup_file_path)).to be(true)
       end
 
       it "does not alter the backup file" do
         expect(IO.read(backup_file_path)).to eq(IO.read(src_file_path))
       end
-
     end
 
     context "updated ssh file" do

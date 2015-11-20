@@ -25,7 +25,7 @@ require "pizzacone"
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
-  config.default_cassette_options = { :record => :new_episodes, :re_record_interval => 518_400 }
+  config.default_cassette_options = { record: :new_episodes, re_record_interval: 518_400 }
 end
 
 Pizzacone.configure do |config|
@@ -57,7 +57,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-   config.extend VCR::RSpec::Macros
+  config.extend VCR::RSpec::Macros
 
   config.order = :random
 # The settings below are suggested to provide a good initial experience
