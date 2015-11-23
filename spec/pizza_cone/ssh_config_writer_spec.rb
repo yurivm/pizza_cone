@@ -74,6 +74,12 @@ describe PizzaCone::SSHConfigWriter do
         expect(host["ip"]).not_to be_nil
         expect(host["user"]).not_to be_nil
       end
+
+      it "uses a custom block to write the host patterns string" do
+        settings = updated_config_section(read_ssh_config)
+        host = host_section(settings[1])
+        expect(host["host"]).to include("and_bla")
+      end
     end
   end
 end

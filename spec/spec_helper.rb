@@ -32,6 +32,9 @@ end
 PizzaCone.configure do |config|
   config.ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config", __FILE__)
   config.backup_ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config.bak", __FILE__)
+  config.set_instance_hostname_block do |instance|
+    "#{instance.hostname} #{instance.stack_name}-#{instance.hostname} and_bla"
+  end
 end
 
 RSpec.configure do |config|

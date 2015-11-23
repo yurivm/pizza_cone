@@ -6,7 +6,8 @@ module PizzaCone
     DEFAULT_SSH_CONFIG_FILE_PATH = "~/.ssh/config"
     DEFAULT_BACKUP_SSH_CONFIG_FILE_PATH = "~/.ssh/config.bak"
 
-    attr_writer :ssh_config_file_path, :backup_ssh_config_file_path, :hostname_block
+    attr_writer :ssh_config_file_path,
+                :backup_ssh_config_file_path
 
     def ssh_config_file_path
       @ssh_config_file_path || DEFAULT_SSH_CONFIG_FILE_PATH
@@ -14,6 +15,14 @@ module PizzaCone
 
     def backup_ssh_config_file_path
       @backup_ssh_config_file_path || DEFAULT_BACKUP_SSH_CONFIG_FILE_PATH
+    end
+
+    def set_instance_hostname_block(&block)
+      @instance_hostname_block = block
+    end
+
+    def instance_hostname_block
+      @instance_hostname_block
     end
   end
 
