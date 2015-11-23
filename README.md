@@ -38,7 +38,7 @@ Don't forget to set the AWS_SSH_USERNAME, I am sure there is a way to get it usi
 ## Run
 ```
 cd /path/to/pizza_cone
-bundle exec bin/update.rb
+bundle exec ruby bin/update.rb
 ```
 
 If successful, your ~/.ssh/config file will be updated with Host sections like:
