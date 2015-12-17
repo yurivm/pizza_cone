@@ -17,10 +17,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__), "lib")
-
 require "vcr"
-require "pizza_cone"
+require_relative "../lib/pizza_cone"
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
@@ -32,8 +30,18 @@ end
 PizzaCone.configure do |config|
   config.ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config", __FILE__)
   config.backup_ssh_config_file_path = File.expand_path("../../fixtures/ssh_config/config.bak", __FILE__)
-  config.set_instance_hostname_block do |instance|
+
+  config.define_instance_hostname_block do |instance|
     "#{instance.hostname} #{instance.stack_name}-#{instance.hostname} and_bla"
+  end
+
+  config.proxy_map = {
+    /.*?test-id\z/ => "test-broker",
+    /.*?not-a-test-id\z/ => "production-broker"
+  }
+
+  config.define_proxy_command_block do |instance|
+    "ProxyCommand ssh -q #{instance.proxy_hostname} nc -q0 #{instance.private_ip} 22"
   end
 end
 

@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe PizzaCone::OpsworksWrapper do
   use_vcr_cassette
 

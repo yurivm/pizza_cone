@@ -2,8 +2,6 @@ source "https://rubygems.org"
 
 gem "aws-sdk", "~> 2"
 gem "dotenv"
-gem "net-ssh"
-gem "parseconfig"
 gem "whenever", require: false
 
 # debugging, testing and stuff

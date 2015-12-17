@@ -29,7 +29,7 @@ module PizzaCone
 
     def update_pizza_cone_settings
       new_settings = instances_settings
-      pizzacone_section_found? ? config.gsub(shady_regexp, new_settings) : config.prepend(new_settings)
+      pizzacone_section_found? ? config.gsub!(shady_regexp, new_settings) : config.prepend(new_settings)
     end
 
     def instances_settings

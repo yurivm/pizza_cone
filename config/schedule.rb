@@ -18,7 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-job_type :pizza_cone,  "cd :path && bundle exec ruby :task :output"
+job_type :pizza_cone, "cd :path && bundle exec ruby :task :output"
 
 every 1.hour do
   pizza_cone "bin/update.rb"
