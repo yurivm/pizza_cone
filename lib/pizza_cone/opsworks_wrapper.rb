@@ -1,3 +1,5 @@
+require_relative "./instance_wrapper"
+
 module PizzaCone
   class OpsworksWrapper
     def initialize
