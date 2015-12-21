@@ -1,9 +1,9 @@
 # Pizza cone
 _almost as awesome_
 
-## What's this? 
+## What's this?
 
-Create and maintain Host records for your [AWS OpsWorks](https://aws.amazon.com/opsworks/) instances in your ssh configuration file, 
+Create and maintain Host records for your [AWS OpsWorks](https://aws.amazon.com/opsworks/) instances in your ssh configuration file,
 so you can comfortably do:
 
 ```
@@ -35,6 +35,40 @@ Note: if you have AWS CLI set, your credentials are probably in ~/.aws/credentia
 
 Don't forget to set the AWS_SSH_USERNAME, I am sure there is a way to get it using the AWS SDK, but I haven't got to that yet.
 
+### Adding brokers
+
+It's possible to configure pizzacone to supply the ProxyCommand for hosts that only allow access from a host inside the network, e.g. when they are in the VPC.
+
+Consider the following setup:
+- the broker host to access testing stacks is called mybroker-testing.example.com
+- the broker host to access production stacks is called mybroker-production.example.com
+- the VPC stacks are called mars-production, jupiter-production and venus-testing
+
+Things you need to do:
+- Add a Host section to your ~/.ssh/config for the broker host:
+```
+Host mybroker-testing.example.com
+  HostName 1.2.3.4
+  User myuser
+  ForwardAgent yes
+
+Host mybroker-production.example.com
+  HostName 2.3.4.5
+  User myuser
+  ForwardAgent yes
+```
+Note that ForwardAgent is usually necessary.
+
+- Configure pizza cone to be able to tell which broker host is used for which stack name (regexp matching is used):
+```
+  config.proxy_map = {
+    /.*?-production\z/ => "mybroker-testing.example.com",  # stacks ending with -production
+    /.*?-testing\z/ => "mybroker-production.example.com"  # stacks ending with -testing
+  }
+```
+
+If an instance's stack name matches a regexp, pizzacone will generate a ProxyCommand for that instance to go through the matching broker host.
+
 ## Run
 ```
 cd /path/to/pizza_cone
@@ -54,3 +88,7 @@ By default Each OpsWorks instance gets two patterns:
 - stackname-instancename (e.g. wildcat-production). Yes I am looking at you, generic app1 names across different stacks.
 
 If that you use [ohmyzsh](https://github.com/robbyrussell/oh-my-zsh), you will get ssh host autocompletion for free!
+
+### Crontab
+
+A [whenever](https://github.com/javan/whenever) config is supplied under config/schedule.rb .Update it and generate your own crontab if you need to.
