@@ -1,6 +1,8 @@
 # Pizza cone
 _almost as awesome_
 
+![cono-pizza](https://cloud.githubusercontent.com/assets/529840/12293008/fa843942-b9f0-11e5-95f6-3a4ea4ba79f7.png)
+
 ## What's this?
 
 Create and maintain Host records for your [AWS OpsWorks](https://aws.amazon.com/opsworks/) instances in your ssh configuration file,
