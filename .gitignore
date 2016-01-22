@@ -9,6 +9,9 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+fixtures/vcr_cassettes/*
+fixtures/ssh_config/*
+config/pizza_cone.rb
 
 ## Specific to RubyMotion:
 .dat*

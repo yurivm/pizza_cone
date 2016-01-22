@@ -1,4 +1,3 @@
-# use files from fixtures for tests
 PizzaCone.configure do |config|
   config.define_instance_hostname_block do |instance|
     "#{instance.hostname} #{instance.stack_name}-#{instance.hostname}"
