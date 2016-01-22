@@ -31,7 +31,9 @@ Set up the [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-ge
 
 If you're getting *Aws::IAM::Errors::AccessDenied* from pizza cone, that means you don't have rights to run IAM requests. In that case, either obtain those rights or add your Opsworks SSH Username to the .env file:
 
+```
 AWS_SSH_USERNAME="yourawssshusername"
+```
 
 ### AWS CLI access: The hard way
 
