@@ -49,7 +49,7 @@ AWS_SSH_USERNAME="yourawssshusername"
 
 Note: if you have AWS CLI set, your credentials are probably in ~/.aws/credentials. If not, check [the Amazon CLI setup guide](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)
 
-Don't forget to set the AWS_SSH_USERNAME, I am sure there is a way to get it using the AWS SDK, but I haven't got to that yet.
+If you haven't used the AWS CLI before, you can retrieve your credentials from https://console.aws.amazon.com/iam/home?region=eu-central-1#users
 
 ### Adding brokers
 
