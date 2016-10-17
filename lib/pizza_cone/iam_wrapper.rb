@@ -9,7 +9,7 @@ module PizzaCone
     end
 
     def initialize
-      @iam = Aws::IAM::Client.new(region: "us-east-1")
+      @iam = Aws::IAM::Client.new(region: PizzaCone.configuration.aws_region)
     end
 
     def opsworks_ssh_username

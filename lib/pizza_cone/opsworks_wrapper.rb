@@ -3,7 +3,7 @@ require_relative "./instance_wrapper"
 module PizzaCone
   class OpsworksWrapper
     def initialize
-      @opsworks = Aws::OpsWorks::Client.new(region: "us-east-1")
+      @opsworks = Aws::OpsWorks::Client.new(region: PizzaCone.configuration.aws_region)
     end
 
     def stacks

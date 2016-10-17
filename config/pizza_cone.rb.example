@@ -11,4 +11,6 @@ PizzaCone.configure do |config|
     /.*?-testing-123bc\z/ => "broker-testing",
     /.*?-production-345xf\z/ => "broker-production"
   }
+
+  config.aws_region = "eu-central-1"
 end

@@ -35,6 +35,17 @@ If you're getting *Aws::IAM::Errors::AccessDenied* from pizza cone, that means y
 AWS_SSH_USERNAME="yourawssshusername"
 ```
 
+#### Regional Stacks
+
+Since it's possible to define region on opsworks now, the default opsworks region of "us-east-1" may return no instances if your instances are in some other region, e.g. in eu-central. Tell pizza_cone which region to use like this:
+
+```
+PizzaCone.configure do |config|
+  # set your region to eu-central-1 (Frankfurt)
+  config.aws_region = "eu-central-1"
+end
+```
+
 ### AWS CLI access: The hard way
 
 If the easy way didn't work, here is the detailed setup:

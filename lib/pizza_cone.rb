@@ -13,7 +13,9 @@ module PizzaCone
 
     DEFAULT_PROXY_COMMAND_BLOCK = proc { |_instance| "" }
 
-    attr_writer :ssh_config_file_path, :backup_ssh_config_file_path, :proxy_map
+    DEFAULT_AWS_REGION = "us-east-1"
+
+    attr_writer :ssh_config_file_path, :backup_ssh_config_file_path, :proxy_map, :aws_region
 
     def ssh_config_file_path
       @ssh_config_file_path || DEFAULT_SSH_CONFIG_FILE_PATH
@@ -25,6 +27,10 @@ module PizzaCone
 
     def proxy_map
       @proxy_map || {}
+    end
+
+    def aws_region
+      @aws_region || DEFAULT_AWS_REGION
     end
 
     def define_instance_hostname_block(&block)
