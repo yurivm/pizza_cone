@@ -3,7 +3,7 @@ require_relative "./iam_wrapper"
 
 module PizzaCone
   class InstanceWrapper < SimpleDelegator
-    ACCESSIBLE_STATUSES = %w(online running_setup setup_failed)
+    ACCESSIBLE_STATUSES = %w(online running_setup setup_failed start_failed)
     USERNAME =  ENV.fetch("AWS_SSH_USERNAME", IAMWrapper.opsworks_ssh_username)
 
     attr_reader :stack
