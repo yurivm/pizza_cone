@@ -50,7 +50,7 @@ GEM
     psych (3.1.0)
     public_suffix (3.0.3)
     rainbow (3.0.0)
-    rake (12.3.2)
+    rake (13.0.1)
     reek (5.3.2)
       codeclimate-engine-rb (~> 0.4.0)
       kwalify (~> 0.7.0)
@@ -111,4 +111,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   2.0.1
+   2.1.4
